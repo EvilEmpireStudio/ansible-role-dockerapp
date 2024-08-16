@@ -1,0 +1,17 @@
+---
+
+dockerapp_config_path: "/etc/{{ dockerapp_name }}"
+dockerapp_volumes_path: "/opt/docker-volumes/{{ dockerapp_name }}"
+# dockerapp_volumes:
+dockerapp_envfile_name: .env
+# dockerapp_env_vars:
+# dockerapp_compose_template_path:
+dockerapp_compose_file_name: docker-compose.yml
+
+dockerapp_recreate: smart
+
+# TODO
+# dockerapp_postrun_commands:
+#   - name: <name>
+#     container: <container_name>
+#     command: <command_to execute>

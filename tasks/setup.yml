@@ -1,0 +1,27 @@
+---
+- name: Main docker-volumes directory presence
+  file:
+    path: "{{ dockerapp_volumes_path }}"
+    state: directory
+    recurse: true
+    owner: root
+    group: root
+    mode: 0701
+
+- name: "docker-app {{ dockerapp_name }} docker-volumes directory presence"
+  file:
+    path: "{{ dockerapp_volumes_path }}/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0701
+  loop: "{{ dockerapp_volumes }}"
+  when: dockerapp_volumes is defined
+
+- name: "docker-app {{ dockerapp_name }} main config dir"
+  file:
+    path: "{{ dockerapp_config_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700

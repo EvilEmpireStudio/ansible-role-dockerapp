@@ -1,0 +1,25 @@
+---
+- name: "docker-app {{ dockerapp_name }} envfile creation"
+  lineinfile:
+    path: "{{ dockerapp_config_path }}/{{ dockerapp_envfile_name }}"
+    regexp: "^{{ item.name }}="
+    line: "{{ item.name }}={{ item.value }}"
+    owner: root
+    group: root
+    mode: 0600
+  with_items: dockerapp_env_vars
+  when: dockerapp_env_vars is iterable
+
+- name: "docker-app {{ dockerapp_name }} compose file templating"
+  template:
+    src: "{{ dockerapp_compose_template_path }}"
+    dest: "{{ dockerapp_config_path }}/{{ dockerapp_compose_file_name }}"
+    owner: root
+    group: root
+    mode: 0600
+
+- name: "docker-app {{ dockerapp_name }} compose run"
+  docker_compose:
+    project_src: "{{ dockerapp_config_path }}"
+    files: [ "{{ dockerapp_compose_file_name }}" ]
+    recreate: "{{ dockerapp_recreate }}"

@@ -1,0 +1,7 @@
+---
+- name: Execute {{ item.name }} docker compose command
+  command: docker compose run --rm {{ item.container }} {{ item.command }}
+  args:
+    chdir: "{{ dockerapp_config_path }}"
+  loop: docker_postrun_commands
+  when: docker_postrun_commands is defined

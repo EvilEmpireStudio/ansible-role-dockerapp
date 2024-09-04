@@ -9,7 +9,7 @@ dockerapp_envfile_name: .env
 # dockerapp_compose_template_path:
 dockerapp_compose_file_name: docker-compose.yml
 
-dockerapp_recreate: smart
+dockerapp_recreate: auto
 
 # TODO
 # dockerapp_postrun_commands:

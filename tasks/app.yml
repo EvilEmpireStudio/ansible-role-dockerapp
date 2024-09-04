@@ -17,7 +17,7 @@
     mode: 0600
 
 - name: "docker-app {{ dockerapp_name }} compose run"
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ dockerapp_config_path }}"
     files: [ "{{ dockerapp_compose_file_name }}" ]
     recreate: "{{ dockerapp_recreate }}"

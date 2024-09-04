@@ -1,14 +1,12 @@
 ---
 - name: "docker-app {{ dockerapp_name }} envfile creation"
-  lineinfile:
-    path: "{{ dockerapp_config_path }}/{{ dockerapp_envfile_name }}"
-    regexp: "^{{ item.name }}="
-    line: "{{ item.name }}={{ item.value }}"
+  template:
+    src: "{{ dockerapp_envfile_local_path }}"
+    dest: "{{ dockerapp_config_path }}/{{ dockerapp_envfile_name }}"
     owner: root
     group: root
     mode: 0600
-  with_items: dockerapp_env_vars
-  when: dockerapp_env_vars is iterable
+  when: dockerapp_envfile_local_path is defined
 
 - name: "docker-app {{ dockerapp_name }} compose file templating"
   template:

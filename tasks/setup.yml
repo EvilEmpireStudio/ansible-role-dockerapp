@@ -7,6 +7,7 @@
     owner: root
     group: root
     mode: 0701
+  when: dockerapp_volumes_custom_path
 
 - name: "docker-app {{ dockerapp_name }} docker-volumes directory presence"
   file:
@@ -15,8 +16,11 @@
     owner: root
     group: root
     mode: 0701
-  loop: "{{ dockerapp_volumes }}"
-  when: dockerapp_volumes is defined
+  loop: "{{ dockerapp_volumes_list }}"
+  when:
+    - dockerapp_volumes_custom_path
+    - dockerapp_volumes_path is defined
+    - dockerapp_volumes_list is defined
 
 - name: "docker-app {{ dockerapp_name }} main config dir"
   file:

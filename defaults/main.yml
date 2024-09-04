@@ -1,8 +1,9 @@
 ---
 
 dockerapp_config_path: "/etc/{{ dockerapp_name }}"
+dockerapp_volumes_custom_path: false
 dockerapp_volumes_path: "/opt/docker-volumes/{{ dockerapp_name }}"
-# dockerapp_volumes:
+# dockerapp_volumes_list:
 dockerapp_envfile_name: .env
 # dockerapp_envfile_local_path:
 # dockerapp_compose_template_path:

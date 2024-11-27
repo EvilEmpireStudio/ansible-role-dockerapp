@@ -11,6 +11,12 @@ dockerapp_compose_file_name: docker-compose.yml
 
 dockerapp_recreate: auto
 
+dockerapp_registry_auth:
+  enable: false
+  url:
+  username:
+  password:
+
 # TODO
 # dockerapp_postrun_commands:
 #   - name: <name>

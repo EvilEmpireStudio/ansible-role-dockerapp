@@ -29,3 +29,10 @@
     owner: root
     group: root
     mode: 0700
+
+- name: "docker-app {{ dockerapp_name }} login"
+  community.docker.docker_login:
+    registry_url: "{{ dockerapp_registry_auth.url }}"
+    username: "{{ dockerapp_registry_auth.username }}"
+    password: "{{ dockerapp_registry_auth.password }}"
+  when: dockerapp_registry_auth.enable

@@ -8,6 +8,7 @@ dockerapp_envfile_name: .env
 # dockerapp_envfile_local_path:
 # dockerapp_compose_template_path:
 dockerapp_compose_file_name: docker-compose.yml
+dockerapp_additional_files_list: []
 
 dockerapp_recreate: auto
 

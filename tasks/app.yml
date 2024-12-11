@@ -8,6 +8,16 @@
     mode: 0600
   when: dockerapp_envfile_local_path is defined
 
+- name: "docker-app {{ dockerapp_name }} additonal files"
+  template:
+    src: "{{ item }}"
+    dest: "{{ dockerapp_config_path }}/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: 0600
+  loop: "{{ dockerapp_additional_files_list }}"
+  when: dockerapp_additional_files_list | length > 0
+
 - name: "docker-app {{ dockerapp_name }} compose file templating"
   template:
     src: "{{ dockerapp_compose_template_path }}"
